@@ -21,6 +21,20 @@
     animation: fadeIn 0.5s;
 }
 
+.login-popup-container-show{
+    place-self: center;
+    width: max(23vw, 330px);
+    color: #808080;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadeIn-secondTime 0.5s;
+}
+
 .login-popup-title{
     display: flex;
     justify-content: space-between;
@@ -46,7 +60,7 @@
     border-radius: 4px;
 }
 
-.login-popup-container button{
+.login-popup button{
     border: none;
     padding: 10px;
     border-radius: 4px;
