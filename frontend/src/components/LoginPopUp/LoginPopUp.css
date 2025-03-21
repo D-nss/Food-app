@@ -21,7 +21,7 @@
     animation: fadeIn 0.5s;
 }
 
-.login-popup-container-show{
+.login-popup-container-fadeIn-again{
     place-self: center;
     width: max(23vw, 330px);
     color: #808080;
