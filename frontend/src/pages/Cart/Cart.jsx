@@ -4,18 +4,20 @@ import { StoreContext } from '../../context/StoreContext'
 
 const Cart = () => {
 
-    const {cartItems, food_list, removeFromCart} = useContext(StoreContext)
+    const {cartItems, food_list, removeFromCart, getTotalCartAmount} = useContext(StoreContext)
 
   return (
+    <>
+    {getTotalCartAmount()===0?<p className='cart-no-products'>Sorry no products added in the cart!</p>:
     <div className='cart'>
       <div className="cart-items">
         <div className="cart-items-title">
-          <p>items</p>
+          <p>Items</p>
           <p>Title</p>
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Remove</p>
+          <p></p>
         </div>
         <br />
         <hr />
@@ -26,10 +28,10 @@ const Cart = () => {
               <div className="cart-items-title cart-items-item">
                 <img src={item.image} alt="" />
                 <p>{item.name}</p>
-                <p>{item.price}</p>
-                <p>{cartItems[item._id]}</p>
-                <p>{item.price*cartItems[item._id]}</p>
-                <p className='cross'>x</p>
+                <p className='price'>${item.price}</p>
+                <p className='quantity'>{cartItems[item._id]}</p>
+                <p className='total'>${item.price*cartItems[item._id]}</p>
+                <button onClick={()=>removeFromCart(item._id)} className='cross'>x</button>
               </div>
               <hr />
               </div>
@@ -37,7 +39,40 @@ const Cart = () => {
           }
         })}
       </div>
+      <div className="cart-bottom">
+        <div className="cart-total">
+          <h2>Cart totals</h2>
+          <div>
+            <div className="cart-total-details">
+              <p>Subtotal</p>
+              <p>${getTotalCartAmount()}</p>
+            </div>
+            <hr />
+            <div className="cart-total-details">
+              <p>Delivery Fee</p>
+              <p>${2}</p>
+            </div>
+            <hr />
+            <div className="cart-total-details">
+              <b>Total</b>
+              <b>${getTotalCartAmount() +2}</b>
+            </div>
+          </div>
+          <button>PROCEED TO CHECKOUT</button>
+        </div>
+        <div className="cart-promocode">
+          <div>
+            <p>If you have a promo code, enter it here</p>
+            <div className="cart-promocode-input">
+              <input type="text" placeholder='Promo code' />
+              <button>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+     }
+    </>
   )
 }
 
